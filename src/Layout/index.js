@@ -41,6 +41,8 @@ function PageLayout(props) {
     }
 
 
+    console.log("sukses", window.location.pathname)
+
     const breadcrumbs = [];
 
     function genBreadcrumbItem(routes) {
@@ -127,7 +129,7 @@ function PageLayout(props) {
                         minHeight: 280,
                     }}
                 >
-                    {   !responsif &&
+                    {   !responsif && window.location.pathname == "/dashboard" &&
                         <div className="header">
                             <div>
                                 <div className="name_user">Hi Atika,</div>
