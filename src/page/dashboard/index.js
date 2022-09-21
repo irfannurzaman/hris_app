@@ -482,7 +482,8 @@ export default function PageDashboard (props) {
                 </div>
             }
             {
-                !responsif && <div className='announcement_mobile'>
+                !responsif && 
+                <div className='announcement_mobile'>
                     <div className='grid_1'>
                         <span className='label'>Announcement</span>
                         <div className='col_1'>
@@ -532,63 +533,66 @@ export default function PageDashboard (props) {
                         </NavLink>
                     </div>
 
-                    <div  className='col_payrol_mobile'>
-                        <div className='grid_1'>
-                            <div className='content_1'>
-                                <div className='label'>
-                                    <span>Attendance Summary</span>
-                                </div>
+                    {/* <div  className='col_payrol_mobile'> */}
+                    <div className='grid_2'>
+                        <div className='content_1'>
+                            <div className='label'>
+                                <span>Attendance Summary</span>
+                            </div>
+                            <div className='chart'>
                                 <PieChart/>
                             </div>
-                            {/* <div className='content_2'>
-                                    <span className='label'>Juni 2022</span>
-                                    <Row className='content_legend'>
-                                        <span>Total Employee</span>
-                                        <span className='value'>263</span>
-                                    </Row>
-                                    <div style={{ flex: 1 }}>
-                                    {
-                                        [
-                                            {
-                                                label: 'Take Home Pay',
-                                                value: 'Rp 103,508,000',
-                                                color: '#D3DEF8'
-                                            },
-                                            {
-                                                label: 'BPJS TK',
-                                                value: 'Rp8,500,000',
-                                                color: '#FEBD38'
-                                            },
-                                            {
-                                                label: 'BPJS KS',
-                                                value: 'Rp8,500,000',
-                                                color: '#4318FF'
-                                            },
-                                            {
-                                                label: 'Tax',
-                                                value: 'Rp 20,000,000',
-                                                color: '#6ABBFF'
-                                            },
-                                        ].map((items, index) => (
-                                            <Row key={index} className='content_legend'>
-                                                <Row className='isi_content'>
-                                                    <Legend width={10} height={10} backgroundColor={items.color}/>
-                                                    <span>{items.label}</span>
-                                                </Row>
-                                                <span className='value'>{items.value}</span>
-                                            </Row>
-                                        ))
-                                    }
-                                    </div>
-                                    <div className='previous'>
-                                        <AiFillCaretUp color='red' size={15}/>
-                                        <span>20% form previous month</span>
-                                    </div>
-                                </div> */}
                         </div>
+                        <div className='chart_2'>
+                            <span className='label'>15/05/2022 - 15/05/2022</span>
+                            {
+                                [
+                                    {
+                                        label: 'Present',
+                                        value: '143',
+                                        percent: '52.0%',
+                                        color: '#4318FF'
+                                    },
+                                    {
+                                        label: 'Leave',
+                                        value: '68',
+                                        percent: '34.0%',
+                                        color: '#6ABBFF'
+                                    },
+                                    {
+                                        label: 'Absent',
+                                        value: '40',
+                                        percent: '10.0%',
+                                        color: '#FFD572'
+                                    },
+                                    {
+                                        label: 'Sick',
+                                        value: '12',
+                                        percent: '4.0%',
+                                        color: '#FF6767'
+                                    },
+                                ].map((items, index) => (
+                                    <Row key={index} className='content_legend'>
+                                        <Row className='isi_content'>
+                                            <Legend width={10} height={10} backgroundColor={items.color}/>
+                                            <span>{items.label}</span>
+                                        </Row>
+                                        <span className='value'>{items.value}</span>
+                                        <span className='value'>{items.percent}</span>
+                                    </Row>
+                                ))
+                            }
+                        </div>
+                        <NavLink to={"/404"} className='selanjutnya'>
+                            <div>Lihat Selengkapnya</div>
+                            <div>
+                                <FiChevronRight size={25}/>
+                            </div>
+                        </NavLink>
                     </div>
+                    {/* </div> */}
 
-                    <div className='grid_2'>
+                    <div className='grid_3'>
                         <span className='label'>Contract Expired</span>
                         <div className='col_1'>
                             <div style={{ width: '100%'}}>
@@ -620,6 +624,55 @@ export default function PageDashboard (props) {
                                 ))
                             }
                             </div>
+                        </div>
+                        <NavLink to={"/404"} className='selanjutnya'>
+                            <div>Lihat Selengkapnya</div>
+                            <div>
+                                <FiChevronRight size={25}/>
+                            </div>
+                        </NavLink>
+                    </div>
+
+                    <div className='grid_4'>
+                        <span className='label'>Employment Status</span>
+                        <div style={{ flex: 1, padding: '0 10px' }}>
+                            <ProgressBar height="15px" labelSize="9px" baseBgColor="#F4F7FE" bgColor='#EC75FF' width='100%' completed={60} />
+                            <div style={{ height: 10}}/>
+                            <ProgressBar height="15px" labelSize="9px" baseBgColor="#F4F7FE" bgColor='#6ABBFF' width='100%' completed={80} />
+                            <div style={{ height: 10}}/>
+                            <ProgressBar height="15px" labelSize="9px" baseBgColor="#F4F7FE" bgColor='#FFB547' width='100%' completed={40} />
+                            <div style={{ height: 15}}/>
+                            {
+                                [
+                                    {
+                                        label: 'Permanent',
+                                        value: '60%',
+                                        value_1: '76',
+                                        color: '#EC75FF'
+                                    },
+                                    {
+                                        label: 'Contract',
+                                        value: '80%',
+                                        value_1: '134',
+                                        color: '#6ABBFF'
+                                    },
+                                    {
+                                        label: 'Probation',
+                                        value: '40%',
+                                        value_1: '53',
+                                        color: '#FFB547'
+                                    },
+                                ].map((items, index) => (
+                                    <Row key={index} className='content_legend'>
+                                        <Row className='isi_content'>
+                                            <Legend width={10} height={10} backgroundColor={items.color}/>
+                                            <span>{items.label}</span>
+                                        </Row>
+                                        <span className='value'>{items.value_1}</span>
+                                        <span className='value'>{items.value}</span>
+                                    </Row>
+                                ))
+                            }
                         </div>
                         <NavLink to={"/404"} className='selanjutnya'>
                             <div>Lihat Selengkapnya</div>

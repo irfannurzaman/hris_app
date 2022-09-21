@@ -11,6 +11,7 @@ import { FaBars } from "react-icons/fa"
 import { IoIosArrowDown } from "react-icons/io"
 import { Logo } from "../assets/logo"
 import { useWindowSize } from "../utils"
+import Sidebar from "./sidebar";
 
 const {Header, Sider, Content} = Layout;
 function PageLayout(props) {
@@ -20,9 +21,7 @@ function PageLayout(props) {
     const dispatch = useDispatch()
     const responsif = useWindowSize();
 
-
-    console.log("responsif", responsif)
-
+    const [sidebar, setSidebar] = useState(false)
     let currentPaths = props.location.pathname.split('/').slice(1);
     currentPaths = currentPaths.map(i => i.replace(/^\S/, s => s.toUpperCase()));
     // useEffect(() => {
@@ -57,13 +56,12 @@ function PageLayout(props) {
 
     genBreadcrumbItem(routes);
 
-    function resetPermission() {
-        localStorage.clear()
-        props.history.push('/')
-    }
-
     return (
         <Layout className={'container'}>
+            {
+                !responsif &&
+                <Sidebar sidebar={sidebar} setSidebar={setSidebar} state={state}/>
+            }
             {
                 responsif ? (
                     <Sider className="sidebar" theme="light">
@@ -96,7 +94,7 @@ function PageLayout(props) {
                     )
                     : <div className="header_phone">
                         <div style={{ display: 'flex', alignItems: 'center' }}>
-                            <FaBars size={20} />
+                            <FaBars size={20} onClick={() => setSidebar(true)} />
                             <span style={{ marginLeft: 10, fontWeight: 'bold', color: '#4318FF' }}>HRIS <span style={{ fontWeight: '700'}}>DASHBOARD</span></span>
                         </div>
                         <div>
@@ -105,22 +103,23 @@ function PageLayout(props) {
                     </div>
             }
             <Layout style={{ background: '#F4F7FE' }}>
-                <div className="header">
-                    <div>
-                        <div className="name_user">Hi Atika,</div>
-                        <div className="name_title">Welcome to HRIS Dashboard</div>
-                    </div>
-                    {
-                        responsif &&
-                        <div className="header_right">
-                            <Input className="input" placeholder="Search" prefix={<FiSearch size={20}/>}/>
-                            <div className="user">
-                                <span>AW</span>
-                            </div>
-                            <IoIosArrowDown onClick={() => history.push('/company')} style={{ cursor: 'pointer' }} size={20}/>
+                {
+                    responsif &&
+                    <div className="header">
+                        <div>
+                            <div className="name_user">Hi Atika,</div>
+                            <div className="name_title">Welcome to HRIS Dashboard</div>
                         </div>
-                    }
-                </div>
+                            <div className="header_right">
+                                <Input className="input" placeholder="Search" prefix={<FiSearch size={20}/>}/>
+                                <div className="user">
+                                    <span>AW</span>
+                                </div>
+                                <IoIosArrowDown onClick={() => history.push('/company')} style={{ cursor: 'pointer' }} size={20}/>
+                            </div>
+                    
+                    </div>
+                }
                 <Content className="content"
                     style={{
                         margin: '24px 16px',
@@ -128,6 +127,14 @@ function PageLayout(props) {
                         minHeight: 280,
                     }}
                 >
+                    {   !responsif &&
+                        <div className="header">
+                            <div>
+                                <div className="name_user">Hi Atika,</div>
+                                <div className="name_title">Welcome to HRIS Dashboard</div>
+                            </div>
+                        </div>
+                    }
                     {props.children}
                 </Content>
             </Layout>
